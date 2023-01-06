@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example Javascript embedded in HTML to query the REST API</title>
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+    <script>const userAction = async () =>  {
+  const response = await fetch('https://t-and-s-dp-poc.azurewebsites.net/REST/0.1/countries',
+                                  {
+                                      method: "GET",
+                                      headers:
+                                        {"Content-type": "application/json",
+                                         "Access-Control-Allow-Origin" : "http://localhost:3000",
+                                         "Access-Control-Allow-Credentials" : "true"
+                                        }
+                                  }
+                              );
+  const myJson = await response.json(); //extract JSON from the http response
+  parsed = JSON.parse(JSON.stringify(myJson));
+  data = "<p><table><tr><th>Continent Name</th><th>CountryName</th></tr>"
+  for (var i = 0; i < parsed.length; i++) {
+    data = data + "<tr><td>"
+    data = data + parsed[i]['ContinentName']
+    data = data + "</td><td>"
+    data = data + parsed[i]['CountryName']
+    data = data + "</td></tr>";
+    }
+  data = data + "</table>"
+  console.log(data);
+  document.getElementById('div').innerHTML = data;
+  }
+    </script>
+</head>
+
+<body id='bod'><button type="submit" onclick="userAction()">call</button>
+<div id='div'>
+
+</div>
+
+</body>
+</html>
