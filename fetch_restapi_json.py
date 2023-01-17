@@ -7,12 +7,12 @@ def basic_auth(username, password):
     token = b64encode(f"{username}:{password}".encode('utf-8')).decode("ascii")
     return f'Basic {token}'
 
-username = "scott"
-password = "*****"
-def fetch_restapi_json():
+username = "Mary"
+password = "tiger"
+def fetch_restapi_json(url):
     headers = {'Authorization': basic_auth(username, password)}
     try:
-        response = requests.get('http://127.0.0.1:80/REST/0.1/countries', headers=headers)
+        response = requests.get(url+'REST/0.1/continents_and_countries', headers=headers)
         response.raise_for_status()
         if response and response.status_code == 200:
             json_data = response.json()

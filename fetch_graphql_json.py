@@ -1,16 +1,15 @@
 from python_graphql_client import GraphqlClient
 
-def fetch_graphql_json(variables):
+def fetch_graphql_json(url, variables):
     # Instantiate the client with an endpoint.
-    client = GraphqlClient(endpoint="http://127.0.0.1/graphql")
+    endpoint=url+'graphql'
+    client = GraphqlClient(endpoint=endpoint)
 
     # Create the query string and variables required for the request.
     query = """
-query MyQuery($CountryName: String, $ContinentCode: String) {
+query MyQuery ($ContinentCode: String, $CountryName:String) {
   countries(ContinentCode: $ContinentCode, CountryName: $CountryName) {
-    ContinentCode
     ContinentName
-    ThreeLetterCountryCode
     CountryName
   }
 }
