@@ -1,5 +1,5 @@
 #Retrieve the continents & countries data from the REST API
-import requests, pandas as pd
+import requests, pandas as pd, json
 from base64 import b64encode
 from io import StringIO
 
