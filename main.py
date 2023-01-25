@@ -1,7 +1,8 @@
 from fetch_restapi_json import fetch_restapi_json
 from fetch_restapi_csv import fetch_restapi_csv
 from fetch_restapi_schema import fetch_restapi_schema
-from fetch_graphql_json import fetch_graphql_json
+from fetch_restapi_docs import fetch_restapi_docs
+#from fetch_graphql_json import fetch_graphql_json
 from post_data_file import post_file
 
 prod_url = 'https://t-and-s-dp-poc.azurewebsites.net/'
@@ -41,6 +42,20 @@ print("\nFetching continents & countries data from the REST API output data port
 df = fetch_restapi_csv(url,username,password)
 print(df)
 
+#Test pushing countries and continents files to REST API input data port
+username = "R2D2"
+password = "tiger"
+print("\nPushing source countries and continents CSV files to the input data port")
+response = post_file(url+'uploadsrcfile', 'countries.csv', username, password)
+print(response)
+response = post_file(url+'uploadsrcfile', 'continents.csv', username, password)
+print(response)
+
+#Test executing a pipeline to create target dataset from source dataset
+print("\nExecute the pipeline which will transform source data into an abstraction layer and push to target dataset")
+response = post_file(url+'executepipeline', 'pipeline.sql', username, password)
+print(response)
+
 #Fetch the data dictionary for the continents and countries dataset
 print("\nFetching continents & countries data dictionary from the REST API output data port")
 json_data = fetch_restapi_schema(url)
@@ -48,7 +63,7 @@ print(json_data)
 
 #Test pushing schema file to REST API input data port
 print("\nPushing a data dictionary/schema file to the input data port")
-response = post_file(url+'uploadschema', 'schema.csv')
+response = post_file(url+'uploadschema', 'schema.csv', username, password)
 print(response)
 
 #Fetch the revised data dictionary for the continents and countries dataset
@@ -56,14 +71,7 @@ print("\nFetching continents & countries data dictionary from the REST API outpu
 json_data = fetch_restapi_schema(url)
 print(json_data)
 
-#Test pushing countries and continents files to REST API input data port
-print("\nPushing source countries and continents CSV files to the input data port")
-response = post_file(url+'uploadsrcfile', 'countries.csv')
-print(response)
-response = post_file(url+'uploadsrcfile', 'continents.csv')
-print(response)
-
-#Test executing a pipeline to create target dataset from source dataset
-print("\nExecute the pipeline which will transform source data into an abstraction layer and push to target dataset")
-response = post_file(url+'executepipeline', 'pipeline.sql')
+#Fetch the data product docs
+print("\nFetching the data product documentation")
+response = fetch_restapi_docs(url)
 print(response)
