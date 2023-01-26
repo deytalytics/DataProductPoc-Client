@@ -3,7 +3,7 @@ import requests, json
 
 def fetch_restapi_schema(url):
     try:
-        response = requests.get(url+'REST/0.1/dictionary/continents_and_countries')
+        response = requests.get(url+'dictionary/continents_and_countries/0.1')
         response.raise_for_status()
         if response and response.status_code == 200:
             json_data = response.json()

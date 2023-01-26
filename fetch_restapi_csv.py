@@ -11,7 +11,7 @@ def basic_auth(username, password):
 def fetch_restapi_csv(url, username, password):
     headers = {'Authorization': basic_auth(username, password)}
     try:
-        response = requests.get(url+'REST/0.1/continents_and_countries', headers=headers, params={'format':'csv'})
+        response = requests.get(url+'continents_and_countries/0.1', headers=headers, params={'format':'csv'})
         response.raise_for_status()
         if response and response.status_code == 200:
             df = pd.read_csv(StringIO(response.text))
