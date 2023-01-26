@@ -1,7 +1,7 @@
 dataset_id,field_name,field_description,field_datatype
-1,Continent_Name,The name of the continent,String
-1,Continent_Code,The code that uniquely identifies the continent,String
-1,Country_Name,The name of the country,String
-1,Two_Letter_Country_Code,The original 2 letter code used by ISO to identify countries,String
-1,Three_Letter_Country_Code,The original 3 letter code used by ISO to identify countries,String
-1,Country_Number,The number assigned to the country by ISO,Integer
+1,ContinentName,The name of the continent,String
+1,ContinentCode,The code that uniquely identifies the continent,String
+1,CountryName,The name of the country,String
+1,TwoLetterCountryCode,The original 2 letter code used by ISO to identify countries,String
+1,ThreeLetterCountryCode,The original 3 letter code used by ISO to identify countries,String
+1,CountryNumber,The number assigned to the country by ISO,Integer
