@@ -5,8 +5,7 @@ from authentication import basic_auth
 def fetch_restapi_json(url, username, password):
     headers = {'Authorization': basic_auth(username, password)}
     try:
-        print(url+'continents_and_countries/0.1')
-        response = requests.get(url+'continents_and_countries/0.1', headers=headers)
+        response = requests.get(url, headers=headers)
         response.raise_for_status()
         if response and response.status_code == 200:
             json_data = response.json()
