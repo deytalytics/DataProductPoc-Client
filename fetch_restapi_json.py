@@ -12,5 +12,4 @@ def fetch_restapi_json(url, username, password):
             return json_data
     except requests.exceptions.HTTPError as e:
         response_text = json.loads(e.response.text)
-        print(response_text,response.status_code,response.reason)
         return {'Error':str(response.status_code)+' '+response.reason+' - '+response_text['detail']}

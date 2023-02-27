@@ -4,5 +4,6 @@ def post_file(url, filename, username, password ):
     headers = {'Authorization': basic_auth(username, password)}
     file = {'file': open(filename, 'rb')}
     resp = requests.post(url=url, files=file, headers=headers)
+    print(resp)
     return (resp.json())
 
