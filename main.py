@@ -8,7 +8,7 @@ from execute_pipeline import execute_pipeline
 prod_url = 'https://t-and-s-dp-poc.azurewebsites.net/'
 prod_tmp_url='https://data-container.azurewebsites.net/'
 dev_url = 'http://127.0.0.1:8000/'
-url = dev_url
+url = prod_tmp_url
 
 print("\nLogging in as R2D2 (who is authorised to upload files)")
 #Test pushing countries and continents files to REST API input data port
